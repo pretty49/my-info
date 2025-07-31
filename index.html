@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Name] - Portfolio</title>
+    <title>haleem Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,10 @@
             color: var(--text-color);
             line-height: 1.6;
         }
+        /* Prevents scrolling when the mobile menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         h1, h2, h3 { color: #ffffff; }
@@ -53,9 +57,29 @@
         }
         .main-header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 600; color: #ffffff; text-decoration: none; }
+        
+        /* --- Desktop Navigation --- */
         .main-nav ul { display: flex; list-style: none; }
         .main-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; transition: color 0.3s ease; font-weight: 400; }
         .main-nav a:hover { color: var(--primary-color); }
+        
+        /* --- Hamburger Menu Button (hidden on desktop) --- */
+        .hamburger-menu-button {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 1001; /* Must be on top of everything */
+        }
+        .hamburger-menu-button .icon-line {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
         
         /* --- Home/About Me Section --- */
         .home-content { display: flex; align-items: center; justify-content: center; gap: 3rem; text-align: left; }
@@ -68,7 +92,7 @@
         .home-text h1 span { color: var(--primary-color); }
         .home-text p { font-size: 1.1rem; color: var(--text-secondary-color); max-width: 600px; font-weight: 300; }
 
-        /* --- Content Cards (Skills, Services, Projects) --- */
+        /* --- Content Cards --- */
         .skill-item, .service-card, .project-card {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -123,65 +147,74 @@
         .main-footer p { margin-top: 1rem; color: var(--text-secondary-color); font-size: 0.9rem; }
         
         /* --- FAIL-SAFE ANIMATION STYLES --- */
-        .animate-on-scroll {
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .js .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        .js .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .animate-on-scroll { transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .js .animate-on-scroll { opacity: 0; transform: translateY(40px); }
+        .js .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
-            /* On medium screens (tablets), switch projects to a 2-column grid */
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* --- ADJUSTED & IMPROVED FOR MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            .container {
-                /* Reduced padding for more space on small screens */
-                padding: 0 1rem;
+            .container { padding: 0 1rem; }
+            h2 { font-size: 2rem; }
+
+            /* --- Hamburger Menu Logic --- */
+            .hamburger-menu-button {
+                display: block; /* Show the hamburger button on mobile */
             }
-            h2 { 
-                font-size: 2rem; 
+            .main-nav {
+                /* Transform the nav into a full-screen overlay */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(18, 18, 18, 0.95);
+                backdrop-filter: blur(10px);
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                /* Hide it by default off-screen */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-100%);
+                transition: all 0.4s ease-in-out;
             }
-            .main-header .container { 
-                flex-direction: column; 
-                gap: 1rem; /* Increased gap for better spacing */
+            .menu-open .main-nav {
+                /* Show the menu when body has .menu-open class */
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
             }
             .main-nav ul {
-                /* Stacks the navigation links vertically */
                 flex-direction: column;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 2rem;
             }
-            .home-content { 
-                flex-direction: column; 
-                text-align: center; 
-                gap: 2rem; /* Reduced vertical gap */
+            .main-nav a {
+                font-size: 1.5rem; /* Make links bigger for easier tapping */
             }
-            .home-text h1 { 
-                font-size: 2.2rem; /* Adjusted font size for mobile */
+
+            /* Animate hamburger to an 'X' */
+            .menu-open .hamburger-menu-button .icon-line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
             }
-            .project-content h3 {
-                /* Reduced project title size */
-                font-size: 1.1rem;
+            .menu-open .hamburger-menu-button .icon-line:nth-child(2) {
+                opacity: 0;
             }
-            .footer-links {
-                /* Stacks the footer links vertically */
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
+            .menu-open .hamburger-menu-button .icon-line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
             }
-            /* On small screens (mobile), switch projects to a 1-column grid */
-            .projects-grid { 
-                grid-template-columns: 1fr; 
-            }
+
+            .main-header .container { flex-direction: row; } /* Keep logo and menu button on same line */
+            .home-content { flex-direction: column; text-align: center; gap: 2rem; }
+            .home-text h1 { font-size: 2.2rem; }
+            .footer-links { display: flex; flex-direction: column; gap: 1rem; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -190,6 +223,14 @@
     <header class="main-header">
         <div class="container">
             <a href="#home" class="logo">Haleem Portfolio</a>
+            
+            <!-- This is the hamburger menu button -->
+            <button class="hamburger-menu-button" aria-label="Toggle Navigation Menu">
+                <span class="icon-line"></span>
+                <span class="icon-line"></span>
+                <span class="icon-line"></span>
+            </button>
+            
             <nav class="main-nav">
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -264,8 +305,6 @@
             <div class="container">
                 <h2 class="animate-on-scroll">My Projects</h2>
                 <div class="projects-grid">
-
-                    <!-- Project 1 -->
                     <div class="project-card animate-on-scroll">
                         <img src="images/janko-ferlic-sfL_QOnmy00-unsplash.jpg" alt="Project 1 Screenshot">
                         <div class="project-content">
@@ -276,8 +315,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Project 2 -->
                     <div class="project-card animate-on-scroll">
                         <img src="images/gabriel-sollmann-Y7d265_7i08-unsplash.jpg" alt="Project 2 Screenshot">
                         <div class="project-content">
@@ -288,8 +325,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Project 3 -->
                     <div class="project-card animate-on-scroll">
                         <img src="images/logo.png" alt="Project 3 Screenshot">
                         <div class="project-content">
@@ -300,8 +335,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Project 4 -->
                     <div class="project-card animate-on-scroll">
                         <img src="images/shunya-koide-1emWndlDHs0-unsplash.jpg" alt="Project 4 Screenshot">
                         <div class="project-content">
@@ -312,7 +345,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -337,7 +369,25 @@
         </div>
     </footer>
 
+    <!-- NEW and existing JavaScript -->
     <script>
+        // --- Hamburger Menu Script ---
+        const menuButton = document.querySelector('.hamburger-menu-button');
+        const navLinks = document.querySelectorAll('.main-nav a');
+
+        menuButton.addEventListener('click', () => {
+            document.body.classList.toggle('menu-open');
+        });
+        
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+
+        // --- On-Scroll Animation Script ---
         const scrollElements = document.querySelectorAll(".animate-on-scroll");
         const elementInView = (el, dividend = 1) => {
             const elementTop = el.getBoundingClientRect().top;
@@ -364,3 +414,4 @@
 
 </body>
 </html>
+ 
