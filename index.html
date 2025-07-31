@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Name] - Portfolio</title>
+    <title>halemm - Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,21 +88,25 @@
         .service-card p { font-weight: 300; }
         .service-icon { width: 28px; height: 28px; color: var(--primary-color); }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        /* --- ADJUSTED: PROJECTS GRID NOW A 4-COLUMN GRID --- */
+        .projects-grid { 
+            display: grid; 
+            /* This line creates 4 equal-width columns */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.5rem; /* Slightly reduced gap for better fit */
+        }
         .project-card {
             border-radius: 8px; overflow: hidden; text-align: left;
             display: flex; flex-direction: column;
         }
         .project-card img { width: 100%; height: 200px; object-fit: cover; }
         .project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .project-content h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .project-content p { color: var(--text-secondary-color); flex-grow: 1; margin-bottom: 1.5rem; font-weight: 300; }
+        .project-content h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; } /* Slightly smaller for 4 columns */
+        .project-content p { color: var(--text-secondary-color); flex-grow: 1; margin-bottom: 1.5rem; font-weight: 300; font-size: 0.9rem; } /* Slightly smaller for 4 columns */
         .project-links { display: flex; gap: 1rem; }
-        .project-links .btn { padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; text-align: center; }
+        .project-links .btn { padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; text-align: center; font-size: 0.9rem; }
         .project-links .btn-primary { background: var(--primary-color); color: #fff; }
         .project-links .btn-primary:hover { background: #3a7bc8; transform: scale(1.05); }
-        .project-links .btn-secondary { background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); }
-        .project-links .btn-secondary:hover { background: var(--primary-color); color: #fff; transform: scale(1.05); }
 
         /* --- Contact Section --- */
         #contact p { max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem; font-weight: 300; }
@@ -134,12 +138,17 @@
         }
 
         /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            /* On medium screens (tablets), switch to a 2-column grid */
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
             h2 { font-size: 2rem; }
             .main-header .container { flex-direction: column; gap: 0.5rem; }
             .home-content { flex-direction: column; text-align: center; }
             .home-text h1 { font-size: 2.5rem; }
-            /* This rule was already here and correct! It makes the projects stack on mobile. */
+            /* On small screens (mobile), switch to a 1-column grid */
             .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -148,7 +157,7 @@
 
     <header class="main-header">
         <div class="container">
-            <a href="#home" class="logo">Haleem <Pre></Pre>ortfolo</a>
+            <a href="#home" class="logo">Haleem Portfolio</a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -164,10 +173,10 @@
     <main>
         <section id="home" class="animate-on-scroll">
             <div class="container">
-                <div class="iamges/home-content">
-                    <img src="fbcd0cfc-06f8-4f34-b168-335a639092ca.jpeg " alt="Profile Picture" class="profile-img">
+                <div class="home-content">
+                    <img src="fbcd0cfc-06f8-4f34-b168-335a639092ca.jpeg" alt="Profile Picture" class="profile-img">
                     <div class="home-text">
-                        <h1>Hellow <span>Am Halima Masud</span></h1>
+                        <h1>Hi, <span>I'm Halima Masud</span></h1>
                         <p>A passionate Web Developer & Designer. I build modern, responsive, and user-friendly websites and applications. Welcome to my personal portfolio.</p>
                     </div>
                 </div>
@@ -219,19 +228,18 @@
             </div>
         </section>
 
-        <!-- =================== CORRECTED PROJECTS SECTION START =================== -->
+        <!-- =================== ADJUSTED PROJECTS SECTION START =================== -->
         <section id="projects">
             <div class="container">
                 <h2 class="animate-on-scroll">My Projects</h2>
-                <!-- All three project cards are now correctly placed inside this single grid container -->
                 <div class="projects-grid">
 
                     <!-- Project 1 -->
                     <div class="project-card animate-on-scroll">
                         <img src="images/janko-ferlic-sfL_QOnmy00-unsplash.jpg" alt="Project 1 Screenshot">
                         <div class="project-content">
-                            <h3> The Nook poet libray</h3>
-                            <p> An astonishing front end codind of a poet libray,where all being are willing to digest diffrent version of the poets</p>
+                            <h3>The Nook Poet Library</h3>
+                            <p>An astonishing front-end coding of a poet library, where all beings are willing to digest different versions of the poets.</p>
                             <div class="project-links">
                                 <a href="https://pretty49.github.io/my-library/" target="_blank" class="btn btn-primary">View Project</a>
                             </div>
@@ -240,39 +248,50 @@
 
                     <!-- Project 2 -->
                     <div class="project-card animate-on-scroll">
-                        <img src="gabriel-sollmann-Y7d265_7i08-unsplash.jpg " alt="Project 2 Screenshot">
+                        <img src="images/gabriel-sollmann-Y7d265_7i08-unsplash.jpg" alt="Project 2 Screenshot">
                         <div class="project-content">
-                            <h3>Haleem Edu quiz</h3>
-                            <p> An educational and entertainig quiz mall for all journey</p>
+                            <h3>Haleem Edu Quiz</h3>
+                            <p>An educational and entertaining quiz mall for all journeys.</p>
                             <div class="project-links">
                                 <a href="https://pretty49.github.io/my-quiz/" target="_blank" class="btn btn-primary">View Project</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 3 (Moved to be inside the grid) -->
+                    <!-- Project 3 -->
                     <div class="project-card animate-on-scroll">
-                        <img src="images/logo.png " alt="Project 3 Screenshot">
+                        <img src="images/logo.png" alt="Project 3 Screenshot">
                         <div class="project-content">
                             <h3>Clique Homepage</h3>
-                            <p>A responsive due to action Homepage </p>
+                            <p>A responsive call-to-action homepage.</p>
                             <div class="project-links">
                                 <a href="https://pretty49.github.io/clique-website/" target="_blank" class="btn btn-primary">View Project</a>
                             </div>
                         </div>
                     </div>
 
-                </div> <!-- The projects-grid now correctly closes after all three projects -->
+                    <!-- NEW: Project 4 (Placeholder) -->
+                    <div class="project-card animate-on-scroll">
+                        <img src="images/shunya-koide-1emWndlDHs0-unsplash.jpg" alt="Project 4 Screenshot">
+                        <div class="project-content">
+                            <h3>The DevHub</h3>
+                            <p> An online platform for all front end web dev</p>
+                            <div class="project-links">
+                                <a href="https://pretty49.github.io/my-edu/" target="_blank" class="btn btn-primary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
-        <!-- =================== CORRECTED PROJECTS SECTION END =================== -->
+        <!-- =================== ADJUSTED PROJECTS SECTION END =================== -->
 
         <section id="contact">
             <div class="container animate-on-scroll">
                 <h2>Get In Touch</h2>
                 <p>Have a project in mind or want to learn web development? Send me a message directly on WhatsApp!</p>
-                <a href="https://wa.me/1237049111844" 
-                   class="whatsapp-btn" target="_blank">Send Message on WhatsApp</a>
+                <a href="https://wa.me/1237049111844" class="whatsapp-btn" target="_blank">Send Message on WhatsApp</a>
             </div>
         </section>
     </main>
@@ -284,35 +303,22 @@
                 <a href="https://www.youtube.com/@halimamasud-j7g" target="_blank">YouTube</a>
                 <a href="https://chat.whatsapp.com/Iwofravl61p8httEiMIUqT" target="_blank">WhatsApp</a>
             </div>
-            <p>© 2024 [Your Name]. All Rights Reserved.</p>
+            <p>© 2024 Halima Masud. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
         const scrollElements = document.querySelectorAll(".animate-on-scroll");
-
         const elementInView = (el, dividend = 1) => {
             const elementTop = el.getBoundingClientRect().top;
-            return (
-                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-            );
+            return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
         };
-
         const elementOutofView = (el) => {
             const elementTop = el.getBoundingClientRect().top;
-            return (
-                elementTop > (window.innerHeight || document.documentElement.clientHeight)
-            );
+            return (elementTop > (window.innerHeight || document.documentElement.clientHeight));
         };
-
-        const displayScrollElement = (element) => {
-            element.classList.add("is-visible");
-        };
-
-        const hideScrollElement = (element) => {
-            element.classList.remove("is-visible");
-        };
-
+        const displayScrollElement = (element) => { element.classList.add("is-visible"); };
+        const hideScrollElement = (element) => { element.classList.remove("is-visible"); };
         const handleScrollAnimation = () => {
             scrollElements.forEach((el) => {
                 if (elementInView(el, 1.25)) {
@@ -322,12 +328,8 @@
                 }
             })
         }
-        window.addEventListener("scroll", () => {
-            handleScrollAnimation();
-        });
-        window.addEventListener("load", () => {
-            handleScrollAnimation();
-        });
+        window.addEventListener("scroll", () => { handleScrollAnimation(); });
+        window.addEventListener("load", () => { handleScrollAnimation(); });
     </script>
 
 </body>
