@@ -1,1 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+     
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+    
+    <style>
+        /* --- Basic Setup & Variables --- */
+        :root {
+            --primary-color: #4a90e2;
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary-color: #a0a0a0;
+            --border-color: #333;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        h1, h2, h3 { color: #ffffff; }
+        h2 {
+            text-align: center; font-size: 2.5rem; margin-bottom: 3rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block; padding-bottom: 0.5rem;
+        }
+        section { padding: 5rem 0; text-align: center; }
+
+        /* --- Header / Navigation --- */
+        .main-header {
+            background-color: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0; position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 600; color: #ffffff; text-decoration: none; }
+        .main-nav ul { display: flex; list-style: none; }
+        .main-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; transition: color 0.3s ease; font-weight: 400; }
+        .main-nav a:hover { color: var(--primary-color); }
+        
+        /* --- Home/About Me Section --- */
+        .home-content { display: flex; align-items: center; justify-content: center; gap: 3rem; text-align: left; }
+        .profile-img {
+            width: 200px; height: 200px; border-radius: 50%;
+            object-fit: cover; border: 4px solid var(--primary-color);
+            box-shadow: 0 0 25px rgba(74, 144, 226, 0.5);
+        }
+        .home-text h1 { font-size: 3rem; font-weight: 700; }
+        .home-text h1 span { color: var(--primary-color); }
+        .home-text p { font-size: 1.1rem; color: var(--text-secondary-color); max-width: 600px; font-weight: 300; }
+
+        /* --- Content Cards (Skills, Services, Projects) --- */
+        .skill-item, .service-card, .project-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-item:hover, .service-card:hover, .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
+        .skill-item { padding: 2rem 1rem; border-radius: 8px; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; }
+        .service-card { padding: 2.5rem 2rem; border-radius: 8px; border-left: 5px solid var(--primary-color); }
+        .service-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .service-card p { font-weight: 300; }
+        .service-icon { width: 28px; height: 28px; color: var(--primary-color); }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .project-card {
+            border-radius: 8px; overflow: hidden; text-align: left;
+            display: flex; flex-direction: column;
+        }
+        .project-card img { width: 100%; height: 200px; object-fit: cover; }
+        .project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-content h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .project-content p { color: var(--text-secondary-color); flex-grow: 1; margin-bottom: 1.5rem; font-weight: 300; }
+        .project-links { display: flex; gap: 1rem; }
+        .project-links .btn { padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; text-align: center; }
+        .project-links .btn-primary { background: var(--primary-color); color: #fff; }
+        .project-links .btn-primary:hover { background: #3a7bc8; transform: scale(1.05); }
+        .project-links .btn-secondary { background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); }
+        .project-links .btn-secondary:hover { background: var(--primary-color); color: #fff; transform: scale(1.05); }
+
+        /* --- Contact Section --- */
+        #contact p { max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem; font-weight: 300; }
+        .whatsapp-btn {
+            display: inline-block; background: #25D366; color: #fff;
+            padding: 1rem 2.5rem; border: none; border-radius: 50px;
+            font-size: 1.2rem; font-weight: 600; text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover { background-color: #1DAE51; transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+
+        /* --- Footer --- */
+        .main-footer { background-color: var(--surface-color); padding: 2rem 0; text-align: center; margin-top: 4rem; }
+        .footer-links a { color: var(--text-secondary-color); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--primary-color); }
+        .main-footer p { margin-top: 1rem; color: var(--text-secondary-color); font-size: 0.9rem; }
+        
+        /* --- FAIL-SAFE ANIMATION STYLES --- */
+        /* By default, elements are visible. This is the fallback for no-js browsers */
+        .animate-on-scroll {
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        /* If JavaScript is enabled, this is the "before" animation state */
+        .js .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        /* This class is added by JavaScript when the element is in view */
+        .js .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .main-header .container { flex-direction: column; gap: 0.5rem; }
+            .home-content { flex-direction: column; text-align: center; }
+            .home-text h1 { font-size: 2.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#home" class="logo">Haleem <Pre></Pre>ortfolo</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- The 'animate-on-scroll' class is now the marker for our animation -->
+        <section id="home" class="animate-on-scroll">
+            <div class="container">
+                <div class="home-content">
+                    <img src="fbcd0cfc-06f8-4f34-b168-335a639092ca.jpeg " alt="Profile Picture" class="profile-img">
+                    <div class="home-text">
+                        <h1>Hellow <span>Am Halima Masud</span></h1>
+                        <p>A passionate Web Developer & Designer. I build modern, responsive, and user-friendly websites and applications. Welcome to my personal portfolio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="animate-on-scroll">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item animate-on-scroll">HTML5</div>
+                    <div class="skill-item animate-on-scroll">CSS3</div>
+                    <div class="skill-item animate-on-scroll">JavaScript</div>
+                    <div class="skill-item animate-on-scroll">Responsive Design</div>
+                    <div class="skill-item animate-on-scroll">Creative Coding</div>
+                    <div class="skill-item animate-on-scroll">Tutoring</div>
+                    <div class="skill-item animate-on-scroll">Figma</div>
+                    <div class="skill-item animate-on-scroll">Client Communication</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="animate-on-scroll">Services I Offer</h2>
+                <div class="services-grid">
+                    <div class="service-card animate-on-scroll">
+                        <h3>
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Frontend Tutoring
+                        </h3>
+                        <p>I tutor students in HTML, CSS, and JavaScript, offering flexible online classes or in-person home lessons to help them master front-end development.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <h3>
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                            Responsive Web Design
+                        </h3>
+                        <p>I help clients by building beautiful, modern websites that look great and function perfectly on any device, from desktops to mobile phones.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <h3>
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                            Digital Poetry & Creative Design
+                        </h3>
+                        <p>I help clients write poetry and bring it to life, designing unique and interactive digital experiences using HTML, CSS, and JavaScript.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="animate-on-scroll">My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card animate-on-scroll">
+                        <img src="janko-ferlic-sfL_QOnmy00-unsplash.jpg" alt="Project 1 Screenshot">
+                        <div class="project-content">
+                            <h3> The Nook poet libray</h3>
+                            <p> An astonishing front end codind of a poet libray,where all being are willing to digest diffrent version of the poets</p>
+                            <div class="project-links">
+                                <a href="https://pretty49.github.io/my-library/" target="_blank" class="btn btn-primary">View Project</a>
+                                 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-on-scroll">
+                        <img src="gabriel-sollmann-Y7d265_7i08-unsplash.jpg " alt="Project 2 Screenshot">
+                        <div class="project-content">
+                            <h3>Haleem Edu quiz</h3>
+                            <p> An educational and entertainig quiz mall for all journey</p>
+                            <div class="project-links">
+                                <a href="https://pretty49.github.io/my-quiz/" target="_blank" class="btn btn-primary">View Project</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+                    <div class="project-card animate-on-scroll">
+                        <img src="logo.png " alt="Project 2 Screenshot">
+                        <div class="project-content">
+                            <h3>Clique Homepage</h3>
+                            <p>A responsive due to action Homepage </p>
+                            <div class="project-links">
+                                <a href="https://pretty49.github.io/clique-website/" target="_blank" class="btn btn-primary">View Project</a>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+           
+        </section>
+
+        <section id="contact">
+            <div class="container animate-on-scroll">
+                <h2>Get In Touch</h2>
+                <p>Have a project in mind or want to learn web development? Send me a message directly on WhatsApp!</p>
+                <a href="https://wa.me/ 1237049111844" 
+                   class="whatsapp-btn" target="_blank">Send Message on WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://www.facebook.com/profile.php?id=100087620131221" target="_blank">Facebook</a>
+                <a href="https://www.youtube.com/@halimamasud-j7g" target="_blank">YouTube</a>
+                <a href="https://chat.whatsapp.com/Iwofravl61p8httEiMIUqT" target="_blank">WhatsApp</a>
+            </div>
+            <p>© 2024 [Your Name]. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FINAL CORRECTED and ROBUST JavaScript for Animations -->
+    <script>
+        // This script will find all elements with the 'animate-on-scroll' class
+        // and add the 'is-visible' class when they enter the viewport.
+        const scrollElements = document.querySelectorAll(".animate-on-scroll");
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+
+        const elementOutofView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop > (window.innerHeight || document.documentElement.clientHeight)
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add("is-visible");
+        };
+
+        const hideScrollElement = (element) => {
+            element.classList.remove("is-visible");
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25)) {
+                    displayScrollElement(el);
+                } else if (elementOutofView(el)) {
+                    // Optional: remove this else-if block if you want animations to only happen once
+                    hideScrollElement(el)
+                }
+            })
+        }
+
+        // Add event listeners for scroll and page load
+        window.addEventListener("scroll", () => {
+            handleScrollAnimation();
+        });
+
+        // Trigger the animation check on page load as well
+        window.addEventListener("load", () => {
+            handleScrollAnimation();
+        });
+    </script>
+
+</body>
+</html>
