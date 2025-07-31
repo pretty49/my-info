@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>halemm - Portfolio</title>
+    <title>[Your Name] - Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,12 +88,10 @@
         .service-card p { font-weight: 300; }
         .service-icon { width: 28px; height: 28px; color: var(--primary-color); }
 
-        /* --- ADJUSTED: PROJECTS GRID NOW A 4-COLUMN GRID --- */
         .projects-grid { 
             display: grid; 
-            /* This line creates 4 equal-width columns */
             grid-template-columns: repeat(4, 1fr); 
-            gap: 1.5rem; /* Slightly reduced gap for better fit */
+            gap: 1.5rem;
         }
         .project-card {
             border-radius: 8px; overflow: hidden; text-align: left;
@@ -101,8 +99,8 @@
         }
         .project-card img { width: 100%; height: 200px; object-fit: cover; }
         .project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .project-content h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; } /* Slightly smaller for 4 columns */
-        .project-content p { color: var(--text-secondary-color); flex-grow: 1; margin-bottom: 1.5rem; font-weight: 300; font-size: 0.9rem; } /* Slightly smaller for 4 columns */
+        .project-content h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .project-content p { color: var(--text-secondary-color); flex-grow: 1; margin-bottom: 1.5rem; font-weight: 300; font-size: 0.9rem; }
         .project-links { display: flex; gap: 1rem; }
         .project-links .btn { padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; text-align: center; font-size: 0.9rem; }
         .project-links .btn-primary { background: var(--primary-color); color: #fff; }
@@ -139,17 +137,51 @@
 
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
-            /* On medium screens (tablets), switch to a 2-column grid */
+            /* On medium screens (tablets), switch projects to a 2-column grid */
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* --- ADJUSTED & IMPROVED FOR MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            h2 { font-size: 2rem; }
-            .main-header .container { flex-direction: column; gap: 0.5rem; }
-            .home-content { flex-direction: column; text-align: center; }
-            .home-text h1 { font-size: 2.5rem; }
-            /* On small screens (mobile), switch to a 1-column grid */
-            .projects-grid { grid-template-columns: 1fr; }
+            .container {
+                /* Reduced padding for more space on small screens */
+                padding: 0 1rem;
+            }
+            h2 { 
+                font-size: 2rem; 
+            }
+            .main-header .container { 
+                flex-direction: column; 
+                gap: 1rem; /* Increased gap for better spacing */
+            }
+            .main-nav ul {
+                /* Stacks the navigation links vertically */
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .home-content { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 2rem; /* Reduced vertical gap */
+            }
+            .home-text h1 { 
+                font-size: 2.2rem; /* Adjusted font size for mobile */
+            }
+            .project-content h3 {
+                /* Reduced project title size */
+                font-size: 1.1rem;
+            }
+            .footer-links {
+                /* Stacks the footer links vertically */
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            /* On small screens (mobile), switch projects to a 1-column grid */
+            .projects-grid { 
+                grid-template-columns: 1fr; 
+            }
         }
     </style>
 </head>
@@ -174,9 +206,9 @@
         <section id="home" class="animate-on-scroll">
             <div class="container">
                 <div class="home-content">
-                        <img src="images/fbcd0cfc-06f8-4f34-b168-335a639092ca.jpeg" alt="Profile Picture" class="profile-img">
-                    <div class="home-text"> 
-                     <h1>Hi, <span>I'm Halima Masud</span></h1>
+                    <img src="images/fbcd0cfc-06f8-4f34-b168-335a639092ca.jpeg" alt="Profile Picture" class="profile-img">
+                    <div class="home-text">
+                        <h1>Hi, <span>I'm Halima Masud</span></h1>
                         <p>A passionate Web Developer & Designer. I build modern, responsive, and user-friendly websites and applications. Welcome to my personal portfolio.</p>
                     </div>
                 </div>
@@ -228,7 +260,6 @@
             </div>
         </section>
 
-        <!-- =================== ADJUSTED PROJECTS SECTION START =================== -->
         <section id="projects">
             <div class="container">
                 <h2 class="animate-on-scroll">My Projects</h2>
@@ -270,7 +301,7 @@
                         </div>
                     </div>
 
-                    <!-- NEW: Project 4 (Placeholder) -->
+                    <!-- Project 4 -->
                     <div class="project-card animate-on-scroll">
                         <img src="images/shunya-koide-1emWndlDHs0-unsplash.jpg" alt="Project 4 Screenshot">
                         <div class="project-content">
@@ -285,13 +316,12 @@
                 </div>
             </div>
         </section>
-        <!-- =================== ADJUSTED PROJECTS SECTION END =================== -->
-
+        
         <section id="contact">
             <div class="container animate-on-scroll">
                 <h2>Get In Touch</h2>
                 <p>Have a project in mind or want to learn web development? Send me a message directly on WhatsApp!</p>
-                <a href="https://wa.me/2347049111844" class="whatsapp-btn" target="_blank">Send Message on WhatsApp</a>
+                <a href="https://wa.me/1237049111844" class="whatsapp-btn" target="_blank">Send Message on WhatsApp</a>
             </div>
         </section>
     </main>
